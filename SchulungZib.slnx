@@ -1,5 +1,8 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="Application/Application.csproj" Id="8873ec78-7b1e-4035-a036-040d50e686aa" />
+    <Project Path="Domain/Domain.csproj" Id="9decc381-48ea-480a-a9b4-1d15c3bd079f" />
+    <Project Path="Infrastructure/Infrastructure.csproj" Id="9ec67e73-0404-4b3c-8b2a-781eab7be355" />
     <Project Path="UI.Blazor/UI.Blazor.csproj" />
   </Folder>
 </Solution>
