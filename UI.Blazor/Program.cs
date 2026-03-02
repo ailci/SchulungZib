@@ -43,7 +43,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline. -------------------------------------------------------------------------
 //app.Use(async (context, next) =>
 //{
-//    await context.Response.WriteAsync("Erste middleware\n");
+//    var userAgent = context.Request.Headers["User-Agent"][0];
+//    await context.Response.WriteAsync($"Erste middleware {userAgent}\n");
 //    await next();
 //    await context.Response.WriteAsync("Erste Back middleware\n");
 //});
