@@ -8,10 +8,10 @@ namespace UI.Blazor.Components.Pages;
 public partial class Home
 {
     public QuoteOfTheDayViewModel? QotdViewModel { get; set; }
-    [Inject] public IQotdService QotdService { get; set; } = null!;
+    [Inject] public IServiceManager ServiceManager { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
-        QotdViewModel = await QotdService.GetQuoteOfTheDayAsync();
+        QotdViewModel = await ServiceManager.QotdService.GetQuoteOfTheDayAsync();
     }
 }

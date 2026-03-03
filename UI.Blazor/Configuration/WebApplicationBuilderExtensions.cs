@@ -58,6 +58,8 @@ public static class WebApplicationBuilderExtensions
         {
             builder.Services.AddScoped<IQotdService, QotdService>();
 
+            builder.Services.AddScoped<IServiceManager, ServiceManager>();
+
             return builder;
         }
     }
