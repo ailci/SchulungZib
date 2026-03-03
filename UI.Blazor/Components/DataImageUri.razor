@@ -1,0 +1,21 @@
+﻿@if(!string.IsNullOrEmpty(MimeType) && ImageContent is not null)
+{
+    @* src="data:MIMETYPE;base64,NUTZDATEN" *@
+    <img width="150" src="data:@MimeType;base64,@Convert.ToBase64String(ImageContent)" @attributes="AdditionalAttributes" />
+}
+else //Kein Bild
+{
+    <img width="150" src="noimg.jpg" @attributes="AdditionalAttributes" />
+}
+
+@code {
+
+    [Parameter, EditorRequired]
+    public string? MimeType { get; set; } 
+
+    [Parameter, EditorRequired]
+    public byte[]? ImageContent { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)] //Für alle anderen Attribute die nicht mit [Parameter] übergeben worden sind
+    public Dictionary<string,object>? AdditionalAttributes { get; set; }
+}
