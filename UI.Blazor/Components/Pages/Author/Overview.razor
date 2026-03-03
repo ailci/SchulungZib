@@ -1,5 +1,7 @@
 ﻿@page "/authors/overview"
 
+@rendermode @(new InteractiveServerRenderMode(prerender: false))
+
 @if (AuthorsVm is null || !AuthorsVm.Any())
 {
     <div>Daten werden geladen...</div>
