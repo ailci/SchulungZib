@@ -13,7 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.AddBlazorConfig()
-    .AddAuthentificationConfig();
+    .AddAuthentificationConfig()
+    .AddServicesConfig();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
