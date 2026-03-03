@@ -34,9 +34,11 @@ else
                 </blockquote>
             </div>
         </div>
+        <div class="alert alert-dark overflow-hidden">
+            @LogOfQotd
+        </div>
     </div>
 }
-
 
 @code {
 
@@ -45,4 +47,7 @@ else
 
     [Parameter, EditorRequired]
     public QuoteOfTheDayViewModel? QotdVm { get; set; }
+
+    [Parameter]
+    public RenderFragment? LogOfQotd { get; set; }
 }

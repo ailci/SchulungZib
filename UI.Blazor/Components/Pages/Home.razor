@@ -4,5 +4,9 @@
 
 <PageTitle>Quote Of The Day</PageTitle>
 
-<QuoteOfTheDay Title="Spruch Des Tages" QotdVm="@QotdViewModel"></QuoteOfTheDay>
+<QuoteOfTheDay Title="Spruch Des Tages" QotdVm="@QotdViewModel">
+    <LogOfQotd>
+        @QotdViewModel?.LogAsJson()
+    </LogOfQotd>
+</QuoteOfTheDay>
 
