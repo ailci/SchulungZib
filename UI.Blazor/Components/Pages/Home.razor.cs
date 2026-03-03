@@ -1,18 +1,13 @@
 using Application.ViewModels.Qotd;
+using Infrastructure;
+using Microsoft.AspNetCore.Components;
 
 namespace UI.Blazor.Components.Pages;
+
 public partial class Home
 {
     public QuoteOfTheDayViewModel? QotdViewModel { get; set; }
 
-    protected override void OnInitialized()
-    {
-        QotdViewModel = new QuoteOfTheDayViewModel
-        {
-            AuthorName = "Ich",
-            AuthorDescription = "Dozent",
-            AuthorBirthDate = new DateOnly(1978, 07, 13),
-            QuoteText = "Larum lierum Löffelstiel, wer nicht fragt, der weiss nicht viel"
-        };
-    }
+    [Inject]
+    public QotdDbContext QotdDbContext { get; set; } = null!;
 }
