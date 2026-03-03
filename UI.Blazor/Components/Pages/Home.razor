@@ -2,6 +2,9 @@
 @page "/home"
 @page "/default"
 
+@rendermode InteractiveServer
+@* @rendermode @(new InteractiveServerRenderMode(prerender: false)) *@
+
 <PageTitle>Quote Of The Day</PageTitle>
 
 <QuoteOfTheDay Title="Spruch Des Tages" QotdVm="@QotdViewModel">
