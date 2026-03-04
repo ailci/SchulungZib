@@ -1,5 +1,6 @@
 ﻿using Application.Contracts.Services;
 using Application.ViewModels.Author;
+using AutoMapper;
 using Domain.Entities;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 
 namespace UI.Blazor.Services;
 
-public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<QotdDbContext> contextFactory) : IAuthorService
+public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<QotdDbContext> contextFactory, IMapper mapper) : IAuthorService
 {
     public async Task<IEnumerable<AuthorViewModel>> GetAuthorsAsync()
     {
@@ -16,15 +17,19 @@ public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<Qotd
         await using var context = await contextFactory.CreateDbContextAsync();
         var authors = await context.Authors.ToListAsync();
 
-        return authors.Select(a => new AuthorViewModel
-        {
-            Id = a.Id,
-            Name = a.Name,
-            Description = a.Description,
-            BirthDate = a.BirthDate,
-            Photo = a.Photo,
-            PhotoMimeType = a.PhotoMimeType
-        });
+        //Manuell
+        //return authors.Select(a => new AuthorViewModel
+        //{
+        //    Id = a.Id,
+        //    Name = a.Name,
+        //    Description = a.Description,
+        //    BirthDate = a.BirthDate,
+        //    Photo = a.Photo,
+        //    PhotoMimeType = a.PhotoMimeType
+        //});
+
+        //Automapper
+        return mapper.Map<IEnumerable<AuthorViewModel>>(authors);
     }
 
     public async Task<bool> DeleteAuthorAsync(Guid authorId)
