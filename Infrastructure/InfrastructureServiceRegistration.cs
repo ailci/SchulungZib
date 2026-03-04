@@ -17,6 +17,7 @@ public static class InfrastructureServiceRegistration
         services.AddDbContextFactory<QotdDbContext>(options =>
         {
             options.UseSqlServer(connectionString);
+            options.EnableSensitiveDataLogging();
         });
 
         return services;

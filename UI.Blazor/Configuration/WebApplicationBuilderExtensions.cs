@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using UI.Blazor.Components.Account;
 using UI.Blazor.Data;
 using UI.Blazor.Services;
@@ -64,6 +65,16 @@ public static class WebApplicationBuilderExtensions
             builder.Services.AddScoped<IAuthorService, AuthorService>();
 
             builder.Services.AddScoped<IServiceManager, ServiceManager>();
+
+            return builder;
+        }
+
+        public WebApplicationBuilder AddSerilogConfig()
+        {
+            builder.Host.UseSerilog((hostContext, configuration) =>
+            {
+                configuration.ReadFrom.Configuration(hostContext.Configuration);
+            });
 
             return builder;
         }
