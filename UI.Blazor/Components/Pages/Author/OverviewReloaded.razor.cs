@@ -29,8 +29,8 @@ public partial class OverviewReloaded
         {
             ErrorMessage = string.Empty;
 
-            //var isDeleted = await ServiceManager.AuthorService.DeleteAuthorAsync(authorId);
-            var isDeleted = false;
+            var isDeleted = await ServiceManager.AuthorService.DeleteAuthorAsync(authorId);
+            
             if (isDeleted)
             {
                 await GetAuthorsAsync();
