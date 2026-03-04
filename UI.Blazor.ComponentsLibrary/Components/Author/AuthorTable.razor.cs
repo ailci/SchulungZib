@@ -11,6 +11,7 @@ public partial class AuthorTable
     [Inject] public DialogService DialogService { get; set; } = null!;
     [Parameter] public EventCallback<Guid> OnAuthorDelete { get; set; }
     [Parameter] public IEnumerable<AuthorViewModel>? AuthorsViewModels { get; set; }
+    private ConfirmDialog? _confirmDialogComponent; //Referenz zur Componente
 
     private async Task ShowConfirmationModal(AuthorViewModel author)
     {
@@ -29,7 +30,11 @@ public partial class AuthorTable
         //}
 
         //3. Version als Componente
+        _confirmDialogComponent?.Show($"Wollen Sie wirklich den Autor {author.Name} löschen?");
 
-
+    }
+    private Task ConfirmDeleteClicked(bool isDelete)
+    {
+        throw new NotImplementedException();
     }
 }
