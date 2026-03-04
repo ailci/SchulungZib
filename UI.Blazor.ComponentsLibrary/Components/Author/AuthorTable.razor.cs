@@ -1,11 +1,13 @@
 using Application.ViewModels.Author;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 
 namespace UI.Blazor.ComponentsLibrary.Components.Author;
 public partial class AuthorTable
 {
     [Inject] public ILogger<AuthorTable> Logger { get; set; } = null!;
+    [Inject] public IJSRuntime JsRuntime { get; set; } = null!;
     [Parameter] public EventCallback<Guid> OnAuthorDelete { get; set; }
     [Parameter] public IEnumerable<AuthorViewModel>? AuthorsViewModels { get; set; }
 
@@ -13,7 +15,11 @@ public partial class AuthorTable
     {
         Logger.LogInformation($"Author {author.Name} zum Löschen ausgewählt...");
 
-        //TODO: Dialog Feld
-        await OnAuthorDelete.InvokeAsync(author.Id);
+        //1. Version
+        if (await JsRuntime.InvokeAsync<bool>("myConfirm", $"Wollen Sie wirklich den Autor {author.Name} löschen?"))
+        {
+            await OnAuthorDelete.InvokeAsync(author.Id);
+        }
+
     }
 }
