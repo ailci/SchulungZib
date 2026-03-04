@@ -1,3 +1,3 @@
-function myConfirm(message) {
+export function myConfirm(message) {
     return window.confirm(message);
 }

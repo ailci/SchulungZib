@@ -16,7 +16,11 @@ public static class WebApplicationBuilderExtensions
         public WebApplicationBuilder AddBlazorConfig()
         {
             builder.Services.AddRazorComponents()
-                .AddInteractiveServerComponents();
+                .AddInteractiveServerComponents(options =>
+                {
+                    //Detaillierte Fehlermeldung bei Circuit
+                    options.DetailedErrors = builder.Environment.IsDevelopment();
+                });
 
             return builder;
         }
