@@ -1,5 +1,6 @@
 ﻿using Application.Contracts.Services;
 using Application.ViewModels.Author;
+using Domain.Entities;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -24,5 +25,22 @@ public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<Qotd
             Photo = a.Photo,
             PhotoMimeType = a.PhotoMimeType
         });
+    }
+
+    public async Task<bool> DeleteAuthorAsync(Guid authorId)
+    {
+        logger.LogInformation($"{nameof(DeleteAuthorAsync)} aufgerufen...");
+        await using var context = await contextFactory.CreateDbContextAsync();
+
+        var author = await context.Authors.FindAsync([authorId]);
+        if (author is null) return false;
+
+        //2. Variante ohne FindAsync
+        //var author2 = new Author { Id = authorId, Name = "", Description = "" };
+
+        context.Authors.Remove(author);
+
+        return await context.SaveChangesAsync() > 0;
+
     }
 }

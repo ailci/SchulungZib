@@ -34,6 +34,7 @@ else
                     <td>@(author.BirthDate is not null ? author.BirthDate.Value.ToShortDateString() : "k.A.")</td>
                     <td>
                         <!-- Aktion -->
+                        <button type="button" class="btn btn-danger" @onclick="() => DeleteAuthor(author.Id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             }

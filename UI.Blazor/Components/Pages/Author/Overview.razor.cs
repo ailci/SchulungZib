@@ -12,6 +12,34 @@ public partial class Overview
 
     protected override async Task OnInitializedAsync()
     {
+        await GetAuthorsAsync();
+    }
+
+    private async Task GetAuthorsAsync()
+    {
         AuthorsVm = await ServiceManager.AuthorService.GetAuthorsAsync();
+    }
+
+    private async Task DeleteAuthor(Guid authorId)    
+    {
+        Logger.LogInformation($"Author löschen aufgerufen mit Id {authorId}");
+
+        try
+        {
+            var isDeleted = await ServiceManager.AuthorService.DeleteAuthorAsync(authorId);
+
+            if (isDeleted)
+            {
+                await GetAuthorsAsync();
+            }
+            else
+            {
+
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Fehler beim Löschen des Autors");
+        }
     }
 }
