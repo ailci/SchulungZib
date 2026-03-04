@@ -23,10 +23,13 @@ public partial class AuthorTable
         //}
 
         //2. Version via DialogService
-        if (await DialogService.ConfirmAsync($"Wollen Sie wirklich den Autor {author.Name} löschen (Dialog)?"))
-        {
-            await OnAuthorDelete.InvokeAsync(author.Id);
-        }
+        //if (await DialogService.ConfirmAsync($"Wollen Sie wirklich den Autor {author.Name} löschen (Dialog)?"))
+        //{
+        //    await OnAuthorDelete.InvokeAsync(author.Id);
+        //}
+
+        //3. Version als Componente
+
 
     }
 }
