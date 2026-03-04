@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Components;
 using System.Collections;
 
 namespace UI.Blazor.Components.Pages.Author;
-public partial class Overview
+public partial class OverviewReloaded
 {
-    [Inject] public ILogger<Overview> Logger { get; set; } = null!;
+    [Inject] public ILogger<OverviewReloaded> Logger { get; set; } = null!;
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
     public IEnumerable<AuthorViewModel>? AuthorsVm { get; set; }
     public string ErrorMessage { get; set; } = string.Empty;
