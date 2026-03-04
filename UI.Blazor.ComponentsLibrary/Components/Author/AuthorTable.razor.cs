@@ -1,4 +1,5 @@
 using Application.ViewModels.Author;
+using Domain.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
@@ -12,10 +13,13 @@ public partial class AuthorTable
     [Parameter] public EventCallback<Guid> OnAuthorDelete { get; set; }
     [Parameter] public IEnumerable<AuthorViewModel>? AuthorsViewModels { get; set; }
     private ConfirmDialog? _confirmDialogComponent; //Referenz zur Componente
+    private Guid _authorIdToDelete;
 
     private async Task ShowConfirmationModal(AuthorViewModel author)
     {
         Logger.LogInformation($"Author {author.Name} zum Löschen ausgewählt...");
+
+        _authorIdToDelete = author.Id;
 
         //1. Version
         //if (await JsRuntime.InvokeAsync<bool>("myConfirm", $"Wollen Sie wirklich den Autor {author.Name} löschen?"))
@@ -33,8 +37,8 @@ public partial class AuthorTable
         _confirmDialogComponent?.Show($"Wollen Sie wirklich den Autor {author.Name} löschen?");
 
     }
-    private Task ConfirmDeleteClicked(bool isDelete)
+    private async Task ConfirmDeleteClicked(bool isDelete)
     {
-        throw new NotImplementedException();
+        await OnAuthorDelete.InvokeAsync(_authorIdToDelete);
     }
 }
