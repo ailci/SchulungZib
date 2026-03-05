@@ -8,6 +8,7 @@ public partial class OverviewReloaded
 {
     [Inject] public ILogger<OverviewReloaded> Logger { get; set; } = null!;
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
+    [Inject] public NavigationManager NavManager { get; set; } = null!;
     public IEnumerable<AuthorViewModel>? AuthorsVm { get; set; }
     public string ErrorMessage { get; set; } = string.Empty;
 
@@ -45,5 +46,9 @@ public partial class OverviewReloaded
             Logger.LogError(ex, "Fehler beim Löschen des Autors");
             ErrorMessage = ex.Message;
         }
+    }
+    private void NavigateToAuthorNew()
+    {
+        NavManager.NavigateTo("/authors/new");
     }
 }
