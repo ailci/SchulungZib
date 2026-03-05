@@ -1,4 +1,5 @@
 ﻿using Application.Contracts.Services;
+using Application.Utilities;
 using Application.ViewModels.Author;
 using AutoMapper;
 using Domain.Entities;
@@ -47,5 +48,12 @@ public class AuthorService(ILogger<AuthorService> logger, IDbContextFactory<Qotd
 
         return await context.SaveChangesAsync() > 0;
 
+    }
+
+    public Task<AuthorViewModel> AddAuthorAsync(AuthorForCreateViewModel authorForCreateViewModel)
+    {
+        logger.LogInformation($"{nameof(AddAuthorAsync)} mit AuthorForCreateVm {authorForCreateViewModel.LogAsJson()} aufgerufen...");
+
+        return Task.FromResult(new AuthorViewModel {Name = "", Description = ""});
     }
 }

@@ -50,7 +50,8 @@
                            class="form-control"
                            accept="image/png, image/jpg, image/jpeg, image/gif"
                            placeholder=" "
-                           @bind-Value="@AuthorForCreateVm.Photo">
+                           @bind-Value="@AuthorForCreateVm.Photo"
+                           OnChange="OnInputFileChange">
                 </InputFile>
                 <label for="Photo">Photo</label>
             </div>

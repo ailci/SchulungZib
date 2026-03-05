@@ -18,10 +18,23 @@ public partial class AuthorNew
     {
         return base.OnInitializedAsync();
     }
-    private Task HandleValidSubmit(EditContext args)
+    private async Task HandleValidSubmit(EditContext args)
     {
-        Logger.LogInformation($"AuthorForCreateVm => {AuthorForCreateVm?.LogAsJson()}");
+        //Logger.LogInformation($"AuthorForCreateVm => {AuthorForCreateVm?.LogAsJson()}");
 
-        return Task.CompletedTask;
+        try
+        {
+            var newAuthor = await ServiceManager.AuthorService.AddAuthorAsync(AuthorForCreateVm!);
+        }
+        catch (Exception ex)
+        {
+            
+        }
+    }
+
+    private void OnInputFileChange(InputFileChangeEventArgs args)
+    {
+        //Logger.LogInformation($"SelectedFile => {args.File.LogAsJson()}");
+        AuthorForCreateVm!.Photo = args.File;
     }
 }
