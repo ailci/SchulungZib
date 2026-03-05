@@ -16,5 +16,9 @@ public class MappingProfile : Profile
         CreateMap<Author, AuthorViewModel>();
         //.ForMember(dest => dest.Photo, opt => opt.Ignore());
         //.ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Description));
+
+        CreateMap<AuthorForCreateViewModel, Author>()
+            .ForMember(dest => dest.Photo, opt => opt.Ignore())
+            .ForMember(dest => dest.PhotoMimeType, opt => opt.Ignore());
     }
 }

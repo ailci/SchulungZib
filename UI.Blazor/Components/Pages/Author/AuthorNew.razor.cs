@@ -25,6 +25,11 @@ public partial class AuthorNew
         try
         {
             var newAuthor = await ServiceManager.AuthorService.AddAuthorAsync(AuthorForCreateVm!);
+
+            if (newAuthor is not null)
+            {
+                NavManager.NavigateTo("/authors/overviewreloaded");
+            }
         }
         catch (Exception ex)
         {
