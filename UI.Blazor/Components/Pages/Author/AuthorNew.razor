@@ -14,6 +14,9 @@
         <!-- Formular -->
         <EditForm Model="AuthorForCreateVm" OnValidSubmit="HandleValidSubmit" class="card card-body bg-light">
 
+            <DataAnnotationsValidator />
+            @* <ValidationSummary /> *@
+
             <!-- Name -->
             <div class="form-floating mb-3">
                 <InputText id="Name"
@@ -22,6 +25,7 @@
                            @bind-Value="@AuthorForCreateVm!.Name">
                 </InputText>
                 <label for="Name">Name</label>
+                <ValidationMessage For="() => AuthorForCreateVm.Name" />
             </div>
             
             <!-- Desciption -->
@@ -32,6 +36,7 @@
                            @bind-Value="@AuthorForCreateVm.Description">
                 </InputText>
                 <label for="Description">Beschreibung</label>
+                <ValidationMessage For="() => AuthorForCreateVm.Description" />
             </div>
             
             <!-- BirthDate -->
@@ -42,6 +47,7 @@
                            @bind-Value="@AuthorForCreateVm.BirthDate">
                 </InputDate>
                 <label for="BirthDate">Geburtsdatum</label>
+                <ValidationMessage For="() => AuthorForCreateVm.BirthDate" />
             </div>
             
             <!-- Photo -->
@@ -54,6 +60,7 @@
                            OnChange="OnInputFileChange">
                 </InputFile>
                 <label for="Photo">Photo</label>
+                <ValidationMessage For="() => AuthorForCreateVm.Photo" />
             </div>
 
             <div>
