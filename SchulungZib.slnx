@@ -5,5 +5,6 @@
     <Project Path="Infrastructure/Infrastructure.csproj" Id="9ec67e73-0404-4b3c-8b2a-781eab7be355" />
     <Project Path="UI.Blazor.ComponentsLibrary/UI.Blazor.ComponentsLibrary.csproj" Id="33483daf-f4ef-46c8-a3e8-7f9e8742b661" />
     <Project Path="UI.Blazor/UI.Blazor.csproj" />
+    <Project Path="WebApi/WebApi.csproj" Id="fddaf216-3a09-4ecc-95d5-08ef1e2902c0" />
   </Folder>
 </Solution>

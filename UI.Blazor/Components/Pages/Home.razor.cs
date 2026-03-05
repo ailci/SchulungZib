@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Application.Contracts.Services;
 using Application.Utilities;
 using Application.ViewModels.Qotd;
@@ -10,7 +11,9 @@ public partial class Home //: IDisposable
 {
     [Inject] public ILogger<Home> Logger { get; set; } = null!;
     [Inject] public IServiceManager ServiceManager { get; set; } = null!;
+    [Inject] public IQotdService QotdApiService { get; set; } = null!;
     [Inject] public PersistentComponentState ApplicationState { get; set; } = null!;
+    [Inject] public IHttpClientFactory HttpClientFactory { get; set; } = null!;
     private PersistingComponentStateSubscription _persistingComponentStateSubscription;
 
     [PersistentState] //https://learn.microsoft.com/en-us/aspnet/core/blazor/state-management/prerendered-state-persistence?view=aspnetcore-10.0
@@ -33,7 +36,22 @@ public partial class Home //: IDisposable
         //}
 
         //4.Lösung
-        QotdViewModel ??= await ServiceManager.QotdService.GetQuoteOfTheDayAsync();
+        //QotdViewModel ??= await ServiceManager.QotdService.GetQuoteOfTheDayAsync();
+
+        //5. Lösung WebApi
+        //var client = HttpClientFactory.CreateClient("qotdapiservice");
+        //var response = await client.GetAsync("api/qotd");
+        //response.EnsureSuccessStatusCode();
+        //var content = await response.Content.ReadAsStringAsync();
+        //Logger.LogInformation($"Rückgabe API: {content}");
+        //QotdViewModel = JsonSerializer.Deserialize<QuoteOfTheDayViewModel>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true});
+
+        //6.Lösung Abkürzung
+        //var client = HttpClientFactory.CreateClient("qotdapiservice");
+        //QotdViewModel = await client.GetFromJsonAsync<QuoteOfTheDayViewModel>("api/qotd");
+
+        //7.Lösung als Service
+        QotdViewModel ??= await QotdApiService.GetQuoteOfTheDayAsync();
 
         //Logger.LogInformation($"QotdViewModel => {QotdViewModel?.LogAsJson()}");
     }
